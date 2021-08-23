@@ -1,6 +1,6 @@
 # Write a method to sort an array of string so that all the anagrams are next to each other.
 
-theList = ["dev", "ved", "edv", "car", "rac", "node", "deno", "noob"]
+theList = ["ars", "che", "sar", "mci", "mun", "rmd", "icm", "num", "kim", "mik"]
 
 def isAnagram(a, b):
   a = [ch for ch in a]

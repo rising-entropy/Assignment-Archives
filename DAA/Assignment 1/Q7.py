@@ -1,4 +1,4 @@
-theCircusArtists = [(65, 100), (70, 150), (56, 90), (75,190), (60, 95), (68, 110)]
+theCircusArtists = [(85, 100), (60, 150), (87, 90), (65,190), (54, 95), (70, 110)]
 
 def sizeOfTallestRoutine(theCircusArtists):
   
