@@ -77,7 +77,6 @@ def matrixRIGHT(matrix):
         temp = bufferMatrix[i][j+1]
         bufferMatrix[i][j+1] = None
         bufferMatrix[i][j] = temp
-        #print(bufferMatrix)
         return bufferMatrix
 
 def getAllOptionStates(matrix, typeList):
@@ -118,10 +117,10 @@ problem = [
 ]
 
 # print(matrixOfMinimalHeuristic(getAllOptionStates(problem, possibleOptions(problem))))
-answer = []
 
 def stepsToReachFinalState(problem, stepsToCompletion):
   
+  # Base Case
   if calculateHeuristic(problem) == 0:
     a = deepcopy(stepsToCompletion)
     print("Steps to Completion:")
