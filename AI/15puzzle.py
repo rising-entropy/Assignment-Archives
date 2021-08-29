@@ -117,6 +117,26 @@ problem = [
   [13, 14, 15, 12]
 ]
 
-print(matrixOfMinimalHeuristic(getAllOptionStates(problem, possibleOptions(problem))))
+# print(matrixOfMinimalHeuristic(getAllOptionStates(problem, possibleOptions(problem))))
+answer = []
 
-# def stepsToReachFinalState()
+def stepsToReachFinalState(problem, stepsToCompletion):
+  
+  if calculateHeuristic(problem) == 0:
+    a = deepcopy(stepsToCompletion)
+    print("Steps to Completion:")
+    for i in a:
+      print(i, end=' ')
+    print("\n")
+    print("Number of Steps: "+str(len(a)))
+    return
+    
+  possibleOptionStates = possibleOptions(problem)
+  possibleMatrices = getAllOptionStates(deepcopy(problem), possibleOptionStates)
+  minimalMatrix = matrixOfMinimalHeuristic(possibleMatrices)
+  steps = deepcopy(stepsToCompletion)
+  steps.append(minimalMatrix[0])
+  stepsToReachFinalState(minimalMatrix[1], deepcopy(steps))
+  
+
+stepsToReachFinalState(problem, [])
