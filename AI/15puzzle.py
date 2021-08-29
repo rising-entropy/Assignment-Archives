@@ -101,6 +101,15 @@ def getAllOptionStates(matrix, typeList):
 
   return optionMatrices
 
+def matrixOfMinimalHeuristic(listOfMatrices):
+  theHeuristics = []
+  for mat in listOfMatrices:
+    theHeuristics.append(calculateHeuristic(mat))
+  minimumHeu = min(theHeuristics)
+  for i in range(len(theHeuristics)):
+    if theHeuristics[i] == minimumHeu:
+      return listOfMatrices[i]
+
 problem = [
   [1, 2, 3, 4],
   [5, 6, 7, 8],
@@ -108,7 +117,4 @@ problem = [
   [13, 14, 15, 12]
 ]
 
-print(getAllOptionStates(problem, possibleOptions(problem)))
-
-
-
+print(matrixOfMinimalHeuristic(getAllOptionStates(problem, possibleOptions(problem))))
