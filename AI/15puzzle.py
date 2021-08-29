@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 # Find steps to solve 15 Puzzle Problem using Heuristic
 
 finalState = [
@@ -38,7 +40,7 @@ def possibleOptions(matrix):
   return lst
 
 def matrixUP(matrix):
-  bufferMatrix = matrix
+  bufferMatrix = matrix.copy()
   for i in range(len(finalState)):
     for j in range(len(finalState[i])):
       if bufferMatrix[i][j] == None:
@@ -48,7 +50,7 @@ def matrixUP(matrix):
         return bufferMatrix
       
 def matrixDOWN(matrix):
-  bufferMatrix = matrix
+  bufferMatrix = matrix.copy()
   for i in range(len(finalState)):
     for j in range(len(finalState[i])):
       if bufferMatrix[i][j] == None:
@@ -58,7 +60,7 @@ def matrixDOWN(matrix):
         return bufferMatrix
 
 def matrixLEFT(matrix):
-  bufferMatrix = matrix
+  bufferMatrix = matrix.copy()
   for i in range(len(finalState)):
     for j in range(len(finalState[i])):
       if bufferMatrix[i][j] == None:
@@ -75,6 +77,7 @@ def matrixRIGHT(matrix):
         temp = bufferMatrix[i][j+1]
         bufferMatrix[i][j+1] = None
         bufferMatrix[i][j] = temp
+        #print(bufferMatrix)
         return bufferMatrix
 
 def getAllOptionStates(matrix, typeList):
@@ -82,27 +85,26 @@ def getAllOptionStates(matrix, typeList):
   
   # UP
   if "UP" in typeList:
-    optionMatrices.append(matrixUP(matrix))
-    print(matrixUP(matrix))
+    optionMatrices.append(matrixUP(deepcopy(matrix)))
   
   #DOWN
   if "DOWN" in typeList:
-    optionMatrices.append(matrixDOWN(matrix))
+    optionMatrices.append(matrixDOWN(deepcopy(matrix)))
   
   #LEFT
   if "LEFT" in typeList:
-    optionMatrices.append(matrixLEFT(matrix))
+    optionMatrices.append(matrixLEFT(deepcopy(matrix)))
   
   #RIGHT
   if "RIGHT" in typeList:
-    optionMatrices.append(matrixRIGHT(matrix))
-  
+    optionMatrices.append(matrixRIGHT(deepcopy(matrix)))
+
   return optionMatrices
 
 problem = [
   [1, 2, 3, 4],
   [5, 6, 7, 8],
-  [9, 10, 11, None],
+  [9, 10, None, 11],
   [13, 14, 15, 12]
 ]
 
