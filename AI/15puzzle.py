@@ -85,26 +85,26 @@ def getAllOptionStates(matrix, typeList):
   
   # UP
   if "UP" in typeList:
-    optionMatrices.append(matrixUP(deepcopy(matrix)))
+    optionMatrices.append(["UP", matrixUP(deepcopy(matrix))])
   
   #DOWN
   if "DOWN" in typeList:
-    optionMatrices.append(matrixDOWN(deepcopy(matrix)))
+    optionMatrices.append(["DOWN", matrixDOWN(deepcopy(matrix))])
   
   #LEFT
   if "LEFT" in typeList:
-    optionMatrices.append(matrixLEFT(deepcopy(matrix)))
+    optionMatrices.append(["LEFT", matrixLEFT(deepcopy(matrix))])
   
   #RIGHT
   if "RIGHT" in typeList:
-    optionMatrices.append(matrixRIGHT(deepcopy(matrix)))
+    optionMatrices.append(["RIGHT", matrixRIGHT(deepcopy(matrix))])
 
   return optionMatrices
 
 def matrixOfMinimalHeuristic(listOfMatrices):
   theHeuristics = []
   for mat in listOfMatrices:
-    theHeuristics.append(calculateHeuristic(mat))
+    theHeuristics.append(calculateHeuristic(mat[1]))
   minimumHeu = min(theHeuristics)
   for i in range(len(theHeuristics)):
     if theHeuristics[i] == minimumHeu:
@@ -118,3 +118,5 @@ problem = [
 ]
 
 print(matrixOfMinimalHeuristic(getAllOptionStates(problem, possibleOptions(problem))))
+
+# def stepsToReachFinalState()
