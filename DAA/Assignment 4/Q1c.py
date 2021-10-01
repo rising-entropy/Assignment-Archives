@@ -1,6 +1,8 @@
 
 import numpy as np
 
+counter = 0
+
 def read_input(input):
     array = np.loadtxt(input,dtype='i',delimiter=' ')
     array_first,array_second = np.split(array,2,axis=0)
@@ -18,6 +20,8 @@ def splitMatrix(matrix):
 def matrixMultiplicationStrassen(m1, m2):
     # Base case
     if len(m1) == 1:
+        global counter
+        counter += 1
         return m1 * m2
     
     a, b, c, d = splitMatrix(m1)
@@ -28,8 +32,8 @@ def matrixMultiplicationStrassen(m1, m2):
     p3 = matrixMultiplicationStrassen(c + d, e)       
     p4 = matrixMultiplicationStrassen(d, g - e)       
     p5 = matrixMultiplicationStrassen(a + d, e + h)       
-    p6 = matrixMultiplicationStrassen(b - d, g + h) 
-    p7 = matrixMultiplicationStrassen(a - c, e + f) 
+    p6 = matrixMultiplicationStrassen(b - d, g + h)
+    p7 = matrixMultiplicationStrassen(a - c, e + f)
 
     # From the diagram
     c11 = p5 + p4 - p2 + p6
