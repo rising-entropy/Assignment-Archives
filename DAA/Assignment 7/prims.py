@@ -1,3 +1,13 @@
+def checkIfPointAlreadyExists(theMST, thePoint):
+    theListOfPoints = []
+    for i in theMST:
+        theListOfPoints.append(i[0])
+        theListOfPoints.append(i[1])
+    theListOfPoints = list(set(theListOfPoints))
+    if thePoint in theListOfPoints:
+        return True
+    return False
+
 theGraph = {
     'A': [('B', 15), ('C', 10), ('D', 19)],
     'B': [('A', 15), ('D', 7), ('E', 17)],
@@ -11,3 +21,39 @@ theGraph = {
     'J': [('H', 2), ('G', 11), ('I', 18)]
 }
 
+# Lets assume we start with A
+
+theMST = []
+
+def nextBestEdge(theGraph, theMST):
+    theListOfPoints = []
+    for i in theMST:
+        theListOfPoints.append(i[0])
+        theListOfPoints.append(i[1])
+    theListOfPoints = list(set(theListOfPoints))
+    theListOfEdges = []
+    for i in theListOfPoints:
+        for j in theGraph[i]:
+            theListOfEdges.append((i, j[0], j[1]))
+    theListOfEdges = sorted(theListOfEdges, key=lambda item: item[2])
+    for i in theListOfEdges:
+        if not checkIfPointAlreadyExists(theMST, i[0]):
+            return i
+        if not checkIfPointAlreadyExists(theMST, i[1]):
+            return i
+
+def primsAlgo(theGraph, theMST):
+    if len(theMST) == 0:
+        # Assume A to be starting point
+        edgesOfA = []
+        for i in theGraph['A']:
+            edgesOfA.append(('A', i[0], i[1]))
+        edgesOfA = sorted(edgesOfA, key=lambda item: item[2])
+        theMST.append(edgesOfA[0])
+    elif len(theMST) == len(theGraph) - 1:
+        return theMST
+    else:
+        theMST.append(nextBestEdge(theGraph, theMST))
+    return primsAlgo(theGraph, theMST)
+
+print(primsAlgo(theGraph, theMST))
