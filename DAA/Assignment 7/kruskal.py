@@ -81,4 +81,10 @@ def kruskalMST(graph):
 
     return theMinimumSpan
 
-print(kruskalMST(theGraph))
+theRequiredMST = kruskalMST(theGraph)
+print(theRequiredMST)
+
+theCost = 0
+for i in theRequiredMST:
+    theCost += i[2]
+print("The cost is "+str(theCost))

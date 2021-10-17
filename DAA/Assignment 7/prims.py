@@ -22,7 +22,6 @@ theGraph = {
 }
 
 # Lets assume we start with A
-
 theMST = []
 
 def nextBestEdge(theGraph, theMST):
@@ -56,4 +55,11 @@ def primsAlgo(theGraph, theMST):
         theMST.append(nextBestEdge(theGraph, theMST))
     return primsAlgo(theGraph, theMST)
 
-print(primsAlgo(theGraph, theMST))
+
+theRequiredMST = primsAlgo(theGraph, theMST)
+print(theRequiredMST)
+
+theCost = 0
+for i in theRequiredMST:
+    theCost += i[2]
+print("The cost is "+str(theCost))
